@@ -6,12 +6,13 @@ from util import cmudict, numbers
 # Input alphabet (63 symbols), plus ARPAbet (84 symbols):
 _pad         = '_'
 _eos         = '~'
-_uppercase   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+_uppercase   = '' #''ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 _lowercase   = 'abcdefghijklmnopqrstuvwxyz'
-_punctuation = '!\'(),-.:;?'
+_number = '' #''12345' #zhyi
+_punctuation = ',' #'!\'(),-.:;?'
 _space       = ' '
 
-_valid_input_chars = _uppercase + _lowercase + _punctuation + _space
+_valid_input_chars = _uppercase + _lowercase + _punctuation + _space + _number
 _trans_table = str.maketrans({chr(i): ' ' for i in range(256) if chr(i) not in _valid_input_chars})
 
 _normal_symbols = _pad + _eos + _valid_input_chars
@@ -33,6 +34,7 @@ def num_symbols():
 def to_sequence(text, force_lowercase=True, expand_abbreviations=True):
   '''Converts a string of text to a sequence of IDs for the symbols in the text'''
   text = text.strip()
+  #print(text)
   text = text.replace('"', '')
   text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode()
 
@@ -64,7 +66,7 @@ def to_string(sequence, remove_eos=False):
 
 
 def _text_to_sequence(text, force_lowercase, expand_abbreviations):
-  text = numbers.normalize(text)
+  ##text = numbers.normalize(text) ## del by zhyi
   text = text.translate(_trans_table)
   if force_lowercase:
     text = text.lower()

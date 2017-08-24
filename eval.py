@@ -18,6 +18,15 @@ sentences = [
   'Talib Kweli confirmed to AllHipHop that he will be releasing an album in the next year.',
 ]
 
+sentences_ht = [
+    'bu4dan4 mei2you3 bao3zhu4 zi4ji3 xin1yi2 xin1ai4 de5 nv3ren2 diao1chan2, hai2 luo4 de2 yi2ge4,',
+    'san1 xing4 jia1chen2, de5 lei4lei4 ma4ming2',
+    'kan4 wan2 ni3 jiu4 zhi1dao4 zhe4 chang3 bi3sai4 duo1 jian1ku3',
+    'er2qie3 jiu4 dang1 mei3ci4 ni3 yi3wei2 ta1men5 zhong1yu2 cheng2gong1 de5 shi2hou4, jiu4, hui4 lai2 yi1 bo1 geng4 ci4ji1 de5 zai1nan4',
+    'ling4yi1fang1mian4, chong1tu1 yu3 mo2ca1 ye3 yue4lai2yue4 zhi2jie1',
+]
+
+
 
 def get_output_base_path(checkpoint_path):
   base_dir = os.path.dirname(checkpoint_path)
@@ -31,7 +40,7 @@ def run_eval(args):
   synth = Synthesizer()
   synth.load(args.checkpoint)
   base_path = get_output_base_path(args.checkpoint)
-  for i, text in enumerate(sentences):
+  for i, text in enumerate(sentences_ht):
     path = '%s-%d.wav' % (base_path, i)
     print('Synthesizing: %s' % path)
     with open(path, 'wb') as f:
